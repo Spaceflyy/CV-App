@@ -1,0 +1,55 @@
+body,
+html {
+	height: 100dvh;
+	margin: 0;
+	padding: 0;
+}
+body {
+	display: flex;
+	justify-content: center;
+}
+#root {
+	display: flex;
+	gap: 2rem;
+	padding: 2rem;
+	width: 70%;
+}
+
+.infoContainer {
+	flex-grow: 1;
+	max-width: 470px;
+	background-color: rgb(201, 201, 201);
+	border-radius: 5px;
+	padding: 1rem;
+	min-height: min-content;
+	border: red solid;
+	height: min-content;
+}
+
+.cvContainer {
+	border: solid orange;
+	flex-grow: 1.75;
+}
+
+input,
+textarea {
+	min-width: 97%;
+}
+
+.chevron::before {
+	border-style: solid;
+	border-width: 0.25em 0.25em 0 0;
+	content: "";
+	display: inline-block;
+	height: 0.45em;
+	left: 0.15em;
+	position: relative;
+	top: 0.15em;
+	transform: rotate(-45deg);
+	vertical-align: top;
+	width: 0.45em;
+}
+
+.chevron::after {
+	transform: rotate(135deg);
+}
