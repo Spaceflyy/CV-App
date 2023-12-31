@@ -7,6 +7,7 @@ html {
 body {
 	display: flex;
 	justify-content: center;
+	background-color: rgb(226, 226, 226);
 }
 #root {
 	display: flex;
@@ -18,12 +19,19 @@ body {
 .infoContainer {
 	flex-grow: 1;
 	max-width: 470px;
-	background-color: rgb(201, 201, 201);
-	border-radius: 5px;
-	padding: 1rem;
+	padding: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
 	min-height: min-content;
-	border: red solid;
 	height: min-content;
+	border-radius: 5px;
+}
+
+.inputSection {
+	background-color: rgb(245, 245, 245);
+	border-radius: 5px;
+	padding: 0.5rem;
 }
 
 .cvContainer {
@@ -31,26 +39,38 @@ body {
 	flex-grow: 1.75;
 }
 
+label,
 input,
 textarea {
 	min-width: 97%;
 }
+
+input,
+textarea {
+	border-radius: 5px;
+	padding: 5px;
+	border: none;
+	background-color: rgb(212, 212, 212);
+}
+
 .hidden {
 	display: none;
 }
+
+.shown {
+	animation: slideIn 0.3s;
+}
 .chevron {
 	border-style: solid;
-	border-width: 0.25em 0.25em 0 0;
-	content: "";
-	display: inline-block;
-	height: 0.45em;
-	left: 0.15em;
+	border-width: 0.15em 0.15em 0 0;
 	position: relative;
-	top: 0.15em;
 	transform: rotate(-45deg);
-	vertical-align: top;
-	width: 0.45em;
+	width: 0.5em;
+	height: 0.5em;
+	top: 0.5em;
+	left: 0.5em;
 	transition: 0.4s;
+	font-size: 20px;
 }
 
 .after {
@@ -59,6 +79,23 @@ textarea {
 }
 
 .inputSection h2 {
-	display: flex;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: 10fr 1fr;
+	cursor: pointer;
+	padding: 0px 1rem 0px 1rem;
+}
+
+form {
+	padding: 0px 1rem 1rem 1rem;
+}
+@keyframes slideIn {
+	from {
+		transform: translateY(-10%);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateY(0%);
+		opacity: 100%;
+	}
 }

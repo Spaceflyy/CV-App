@@ -1,5 +1,12 @@
+import { useState } from "react";
 import InputSection from "./components/InputSection.jsx";
 function App() {
+	const [open, setOpen] = useState(0);
+
+	// const toggle = () => {
+	// 	setOpen(!open);
+	// };
+
 	return (
 		<>
 			<div className="infoContainer">
@@ -11,9 +18,10 @@ function App() {
 						{ id: 2, name: "Telephone", type: "tel" },
 						{ id: 3, name: "Location", type: "text" },
 					]}
-					collapseable={false}
+					isActive={open === 0}
+					onOpen={() => setOpen(0)}
 				/>
-				<hr />
+
 				<InputSection
 					title={"Education"}
 					fields={[
@@ -22,9 +30,10 @@ function App() {
 						{ id: 2, name: "Start Date", type: "date" },
 						{ id: 3, name: "End Date", type: "date" },
 					]}
-					collapseable={true}
+					isActive={open === 1}
+					onOpen={() => setOpen(1)}
 				/>
-				<hr />
+
 				<InputSection
 					title={"Experience"}
 					fields={[
@@ -34,7 +43,8 @@ function App() {
 						{ id: 3, name: "Start Date", type: "date" },
 						{ id: 4, name: "End Date", type: "date" },
 					]}
-					collapseable={true}
+					isActive={open === 2}
+					onOpen={() => setOpen(2)}
 				/>
 			</div>
 			<div className="cvContainer"></div>

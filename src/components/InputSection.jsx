@@ -1,23 +1,11 @@
-import { useState } from "react";
-
-export default function InputSection({ title, fields, collapseable }) {
-	const [open, setOpen] = useState(collapseable);
-
-	const toggle = () => {
-		setOpen(!open);
-	};
-
+export default function InputSection({ title, fields, isActive, onOpen }) {
 	return (
 		<div className="inputSection">
-			<h2 onClick={toggle}>
+			<h2 onClick={onOpen}>
 				{title}
-				{collapseable ? (
-					<span className={open ? "chevron" : "chevron after"}></span>
-				) : (
-					""
-				)}
+				<span className={isActive ? "chevron after" : "chevron"}></span>
 			</h2>
-			<form className={open && "hidden"} action="">
+			<form className={isActive ? "shown" : "hidden"} action="">
 				{fields.map((field) => {
 					return (
 						<label key={field.id} htmlFor={field.name}>
