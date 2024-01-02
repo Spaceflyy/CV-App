@@ -19,7 +19,6 @@ export default function InputForm({ fields, isActive, onChange }) {
 			})}
 			<input type="button" value="Cancel" />
 			<input type="button" value="Clear" />
-
 			<input form="inputForm" id="submitBtn" type="submit" value="Save" />
 		</form>
 	);
