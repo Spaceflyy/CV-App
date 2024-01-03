@@ -19,15 +19,18 @@ function App() {
 	}
 	function handleSubmit(e) {
 		e.preventDefault();
-		let schoolName = document.getElementById("School Name").value;
-		let subject = document.getElementById("Subject").value;
-		let start = document.getElementById("Start Date").value;
-		let end = document.getElementById("End Date").value;
+		let schoolName = document.querySelector("#educationForm #SchoolName").value;
+		let subject = document.querySelector("#educationForm #Subject").value;
+		let start = document.querySelector("#educationForm #StartDate").value;
+		let end = document.querySelector("#educationForm #EndDate").value;
+		let loc = document.querySelector("#educationForm #Location").value;
+
 		let newEducation = {
 			name: schoolName,
 			subject: subject,
 			start: start,
 			end: end,
+			location: loc,
 		};
 
 		setEduList([...eduList, newEducation]);
@@ -44,11 +47,13 @@ function App() {
 					onOpen={() => setOpen(1)}
 					children={
 						<InputForm
+							formId={"educationForm"}
 							fields={[
 								{ id: 0, name: "School Name", type: "text" },
 								{ id: 1, name: "Subject", type: "text" },
 								{ id: 2, name: "Start Date", type: "date" },
 								{ id: 3, name: "End Date", type: "date" },
+								{ id: 4, name: "Location", type: "text" },
 							]}
 							isActive={open === 1}
 							onChange={handleSubmit}
@@ -62,6 +67,7 @@ function App() {
 					onOpen={() => setOpen(2)}
 					children={
 						<InputForm
+							formId={"experienceForm"}
 							fields={[
 								{ id: 0, name: "Company Name", type: "text" },
 								{ id: 1, name: "Position", type: "text" },
@@ -88,6 +94,7 @@ function App() {
 							<p>{list.subject}</p>
 							<p>{list.start}</p>
 							<p>{list.end}</p>
+							<p>{list.location}</p>
 						</>
 					);
 				})}

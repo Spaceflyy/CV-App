@@ -1,8 +1,8 @@
-export default function InputForm({ fields, isActive, onChange }) {
+export default function InputForm({ formId, fields, isActive, onChange }) {
 	return (
 		<form
 			onSubmit={onChange}
-			id="inputForm"
+			id={formId}
 			className={isActive ? "shown" : "hidden"}
 		>
 			{fields.map((field) => {
@@ -12,14 +12,18 @@ export default function InputForm({ fields, isActive, onChange }) {
 						{field.type === "textarea" ? (
 							<textarea id={field.name} type={field.type} />
 						) : (
-							<input name={field.name} id={field.name} type={field.type} />
+							<input
+								name={field.name}
+								id={field.name.split(" ").join("")}
+								type={field.type}
+							/>
 						)}
 					</label>
 				);
 			})}
 			<input type="button" value="Cancel" />
 			<input type="button" value="Clear" />
-			<input form="inputForm" id="submitBtn" type="submit" value="Save" />
+			<input form={formId} id="submitBtn" type="submit" value="Save" />
 		</form>
 	);
 }
