@@ -2,11 +2,22 @@ import { useState } from "react";
 import InputSection from "./components/InputSection.jsx";
 import InputForm from "./components/InputForm.jsx";
 import PersonalInfo from "./components/PersonalInfo.jsx";
+import ListRenderer from "./components/ListRenderer.jsx";
 
 function App() {
 	const [open, setOpen] = useState(0);
-	const [eduList, setEduList] = useState([]);
+	const [eduList, setEduList] = useState([
+		{
+			name: "Test",
+			subject: "Maths",
+			start: "13/10/20",
+			end: "23/09/23",
+			location: "Bournemouth",
+		},
+	]);
 	const [text, setText] = useState({});
+	const [expList, setExpList] = useState([]);
+	const [formOpen, setFormOpen] = useState(false);
 
 	function handleChange(e) {
 		e.preventDefault();
@@ -17,23 +28,42 @@ function App() {
 		let newDetails = { fName: name, mail: email, telephone: tel, location: loc };
 		setText(newDetails);
 	}
+
 	function handleSubmit(e) {
 		e.preventDefault();
-		let schoolName = document.querySelector("#educationForm #SchoolName").value;
-		let subject = document.querySelector("#educationForm #Subject").value;
-		let start = document.querySelector("#educationForm #StartDate").value;
-		let end = document.querySelector("#educationForm #EndDate").value;
-		let loc = document.querySelector("#educationForm #Location").value;
+		if (e.target.getAttribute("id") === "educationForm") {
+			let schoolName = document.querySelector("#educationForm #SchoolName").value;
+			let subject = document.querySelector("#educationForm #Subject").value;
+			let start = document.querySelector("#educationForm #StartDate").value;
+			let end = document.querySelector("#educationForm #EndDate").value;
+			let loc = document.querySelector("#educationForm #Location").value;
 
-		let newEducation = {
-			name: schoolName,
-			subject: subject,
-			start: start,
-			end: end,
-			location: loc,
-		};
+			let newEducation = {
+				name: schoolName,
+				subject: subject,
+				start: start,
+				end: end,
+				location: loc,
+			};
 
-		setEduList([...eduList, newEducation]);
+			setEduList([...eduList, newEducation]);
+		} else {
+			let name = document.querySelector("#expForm #CompanyName").value;
+			let position = document.querySelector("#expForm #Position").value;
+			let desc = document.querySelector("#expForm #Description").value;
+			let start = document.querySelector("#expForm #StartDate").value;
+			let end = document.querySelector("#expForm #EndDate").value;
+
+			let newExperience = {
+				name: name,
+				pos: position,
+				desc: desc,
+				start: start,
+				end: end,
+			};
+
+			setExpList([...expList, newExperience]);
+		}
 	}
 
 	return (
@@ -46,18 +76,26 @@ function App() {
 					isActive={open === 1}
 					onOpen={() => setOpen(1)}
 					children={
-						<InputForm
-							formId={"educationForm"}
-							fields={[
-								{ id: 0, name: "School Name", type: "text" },
-								{ id: 1, name: "Subject", type: "text" },
-								{ id: 2, name: "Start Date", type: "date" },
-								{ id: 3, name: "End Date", type: "date" },
-								{ id: 4, name: "Location", type: "text" },
-							]}
-							isActive={open === 1}
-							onChange={handleSubmit}
-						/>
+						<>
+							<ListRenderer
+								onClick={() => setFormOpen(true)}
+								isActive={open === 1 && formOpen === false}
+								dataArray={eduList}
+							/>
+							<InputForm
+								formId={"educationForm"}
+								fields={[
+									{ id: 0, name: "School Name", type: "text" },
+									{ id: 1, name: "Subject", type: "text" },
+									{ id: 2, name: "Start Date", type: "date" },
+									{ id: 3, name: "End Date", type: "date" },
+									{ id: 4, name: "Location", type: "text" },
+								]}
+								isActive={open === 1 && formOpen === true}
+								onChange={handleSubmit}
+								onClick={() => setFormOpen(false)}
+							/>
+						</>
 					}
 				/>
 
@@ -66,17 +104,26 @@ function App() {
 					isActive={open === 2}
 					onOpen={() => setOpen(2)}
 					children={
-						<InputForm
-							formId={"experienceForm"}
-							fields={[
-								{ id: 0, name: "Company Name", type: "text" },
-								{ id: 1, name: "Position", type: "text" },
-								{ id: 2, name: "Description", type: "textarea" },
-								{ id: 3, name: "Start Date", type: "date" },
-								{ id: 4, name: "End Date", type: "date" },
-							]}
-							isActive={open === 2}
-						/>
+						<>
+							<ListRenderer
+								onClick={() => setFormOpen(true)}
+								isActive={open === 2 && formOpen === false}
+								dataArray={expList}
+							/>
+							<InputForm
+								formId={"expForm"}
+								fields={[
+									{ id: 0, name: "Company Name", type: "text" },
+									{ id: 1, name: "Position", type: "text" },
+									{ id: 2, name: "Description", type: "textarea" },
+									{ id: 3, name: "Start Date", type: "date" },
+									{ id: 4, name: "End Date", type: "date" },
+								]}
+								isActive={open === 2 && formOpen === true}
+								onChange={handleSubmit}
+								onClick={() => setFormOpen(false)}
+							/>
+						</>
 					}
 				/>
 			</div>
@@ -95,6 +142,18 @@ function App() {
 							<p>{list.start}</p>
 							<p>{list.end}</p>
 							<p>{list.location}</p>
+						</>
+					);
+				})}
+
+				{expList.map((list) => {
+					return (
+						<>
+							<h1>{list.name}</h1>
+							<p>{list.pos}</p>
+							<p>{list.desc}</p>
+							<p>{list.start}</p>
+							<p>{list.end}</p>
 						</>
 					);
 				})}

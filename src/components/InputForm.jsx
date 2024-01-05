@@ -1,4 +1,10 @@
-export default function InputForm({ formId, fields, isActive, onChange }) {
+export default function InputForm({
+	onClick,
+	formId,
+	fields,
+	isActive,
+	onChange,
+}) {
 	return (
 		<form
 			onSubmit={onChange}
@@ -21,7 +27,7 @@ export default function InputForm({ formId, fields, isActive, onChange }) {
 					</label>
 				);
 			})}
-			<input type="button" value="Cancel" />
+			<input onClick={onClick} type="button" value="Cancel" />
 			<input type="button" value="Clear" />
 			<input form={formId} id="submitBtn" type="submit" value="Save" />
 		</form>
