@@ -79,8 +79,12 @@ function App() {
 		}
 	}
 
-	function handleDelete(id) {
+	function handleDeleteEducation(id) {
 		setEduList(eduList.filter((item) => item.id !== id));
+	}
+
+	function handleDeleteExperience(id) {
+		setExpList(expList.filter((item) => item.id !== id));
 	}
 
 	return (
@@ -98,7 +102,7 @@ function App() {
 								onClick={() => setFormOpen(true)}
 								isActive={open === 1 && formOpen === false}
 								dataArray={eduList}
-								onDelete={handleDelete}
+								onDelete={handleDeleteEducation}
 							/>
 							<InputForm
 								formId={"educationForm"}
@@ -127,7 +131,7 @@ function App() {
 								onClick={() => setFormOpen(true)}
 								isActive={open === 2 && formOpen === false}
 								dataArray={expList}
-								handleDelete={handleDelete}
+								onDelete={handleDeleteExperience}
 							/>
 							<InputForm
 								formId={"expForm"}
