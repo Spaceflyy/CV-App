@@ -36,7 +36,8 @@ body {
 
 .cvContainer {
 	border: solid orange;
-	flex-grow: 1.75;
+	height: 29.7cm;
+	width: 21cm;
 }
 
 label,
@@ -85,7 +86,8 @@ textarea {
 	padding: 0px 1rem 0px 1rem;
 }
 input[type="submit"],
-input[type="button"] {
+input[type="button"],
+button {
 	margin-top: 1rem;
 	min-width: 100px;
 }
@@ -103,4 +105,29 @@ form {
 		transform: translateY(0%);
 		opacity: 100%;
 	}
+}
+ul {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin: 0;
+	padding: 0;
+}
+li {
+	background-color: rgb(226, 226, 226);
+	margin: 0;
+	display: flex;
+	align-items: center;
+	list-style-type: none;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+li p {
+	flex-grow: 1;
+	margin: 0;
+}
+
+ion-icon {
+	font-size: 24px;
 }

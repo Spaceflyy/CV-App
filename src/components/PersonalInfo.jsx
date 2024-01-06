@@ -2,8 +2,8 @@ export default function PersonalInfo({ text, onChange }) {
 	return (
 		<div className="inputSection">
 			<h2>Personal Details</h2>
-			<form id="personalDetails" class="shown">
-				<label for="Full Name">
+			<form id="personalDetails" className="shown">
+				<label htmlFor="Full Name">
 					<h3>Full Name</h3>
 					<input
 						value={text}
@@ -13,7 +13,7 @@ export default function PersonalInfo({ text, onChange }) {
 						type="text"
 					/>
 				</label>
-				<label for="Email">
+				<label htmlFor="Email">
 					<h3>Email</h3>
 					<input
 						value={text}
@@ -23,7 +23,7 @@ export default function PersonalInfo({ text, onChange }) {
 						type="email"
 					/>
 				</label>
-				<label for="Telephone">
+				<label htmlFor="Telephone">
 					<h3>Telephone</h3>
 					<input
 						value={text}
@@ -33,7 +33,7 @@ export default function PersonalInfo({ text, onChange }) {
 						type="tel"
 					/>
 				</label>
-				<label for="Location">
+				<label htmlFor="Location">
 					<h3>Location</h3>
 					<input
 						value={text}
