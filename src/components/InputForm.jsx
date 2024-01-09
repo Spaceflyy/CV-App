@@ -28,7 +28,7 @@ export default function InputForm({
 				);
 			})}
 			<input onClick={onClick} type="button" value="Cancel" />
-			<input type="button" value="Clear" />
+			<input type="reset" value="Clear" />
 			<input form={formId} id="submitBtn" type="submit" value="Save" />
 		</form>
 	);

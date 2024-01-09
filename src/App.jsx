@@ -88,17 +88,20 @@ function App() {
 		setExpList(expList.filter((item) => item.id !== id));
 	};
 
-	const saveEdit = (e, id) => {
+	const saveEdit = (e) => {
 		e.preventDefault();
 		let schoolName = document.querySelector("#educationForm #SchoolName").value;
 		let subject = document.querySelector("#educationForm #Subject").value;
 		let start = document.querySelector("#educationForm #StartDate").value;
 		let end = document.querySelector("#educationForm #EndDate").value;
 		let loc = document.querySelector("#educationForm #Location").value;
+		let submitBtn = document.getElementById("submitBtn");
 
+		let id = Number(submitBtn.getAttribute("data"));
+		console.log(id);
 		setEduList(
 			eduList.map((item) => {
-				if (item.id === 0) {
+				if (item.id === id) {
 					return {
 						...item,
 						name: schoolName,
@@ -121,6 +124,8 @@ function App() {
 		let start = document.querySelector("#educationForm #StartDate");
 		let end = document.querySelector("#educationForm #EndDate");
 		let loc = document.querySelector("#educationForm #Location");
+		let submitBtn = document.getElementById("submitBtn");
+		submitBtn.setAttribute("data", id);
 		schoolName.value = item[0].name;
 		subject.value = item[0].subject;
 		start.value = item[0].start;
