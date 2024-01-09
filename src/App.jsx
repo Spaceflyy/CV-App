@@ -28,7 +28,7 @@ function App() {
 	const [expList, setExpList] = useState([]);
 	const [formOpen, setFormOpen] = useState(false);
 
-	function handleChange(e) {
+	const handleChange = (e) => {
 		e.preventDefault();
 
 		let name = document.getElementById("Full Name").value;
@@ -37,9 +37,9 @@ function App() {
 		let loc = document.getElementById("Location").value;
 		let newDetails = { fName: name, mail: email, telephone: tel, location: loc };
 		setText(newDetails);
-	}
+	};
 
-	function handleSubmit(e) {
+	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (e.target.getAttribute("id") === "educationForm") {
 			let schoolName = document.querySelector("#educationForm #SchoolName").value;
@@ -56,7 +56,6 @@ function App() {
 				end: end,
 				location: loc,
 			};
-
 			setEduList([...eduList, newEducation]);
 		} else {
 			let id = expList.length;
@@ -77,15 +76,58 @@ function App() {
 
 			setExpList([...expList, newExperience]);
 		}
-	}
+		document.getElementById(e.target.getAttribute("id")).reset();
+		setFormOpen(false);
+	};
 
-	function handleDeleteEducation(id) {
+	const handleDeleteEducation = (id) => {
 		setEduList(eduList.filter((item) => item.id !== id));
-	}
+	};
 
-	function handleDeleteExperience(id) {
+	const handleDeleteExperience = (id) => {
 		setExpList(expList.filter((item) => item.id !== id));
-	}
+	};
+
+	const saveEdit = (e, id) => {
+		e.preventDefault();
+		let schoolName = document.querySelector("#educationForm #SchoolName").value;
+		let subject = document.querySelector("#educationForm #Subject").value;
+		let start = document.querySelector("#educationForm #StartDate").value;
+		let end = document.querySelector("#educationForm #EndDate").value;
+		let loc = document.querySelector("#educationForm #Location").value;
+
+		setEduList(
+			eduList.map((item) => {
+				if (item.id === 0) {
+					return {
+						...item,
+						name: schoolName,
+						subject: subject,
+						start: start,
+						end: end,
+						location: loc,
+					};
+				} else return item;
+			})
+		);
+
+		setFormOpen(false);
+	};
+
+	const handleEdit = (id) => {
+		let item = eduList.filter((item) => item.id === id);
+		let schoolName = document.querySelector("#educationForm #SchoolName");
+		let subject = document.querySelector("#educationForm #Subject");
+		let start = document.querySelector("#educationForm #StartDate");
+		let end = document.querySelector("#educationForm #EndDate");
+		let loc = document.querySelector("#educationForm #Location");
+		schoolName.value = item[0].name;
+		subject.value = item[0].subject;
+		start.value = item[0].start;
+		end.value = item[0].end;
+		loc.value = item[0].location;
+		setFormOpen(true);
+	};
 
 	return (
 		<>
@@ -103,18 +145,19 @@ function App() {
 								isActive={open === 1 && formOpen === false}
 								dataArray={eduList}
 								onDelete={handleDeleteEducation}
+								onEdit={handleEdit}
 							/>
 							<InputForm
 								formId={"educationForm"}
 								fields={[
 									{ id: 0, name: "School Name", type: "text" },
 									{ id: 1, name: "Subject", type: "text" },
-									{ id: 2, name: "Start Date", type: "date" },
-									{ id: 3, name: "End Date", type: "date" },
+									{ id: 2, name: "Start Date", type: "text" },
+									{ id: 3, name: "End Date", type: "text" },
 									{ id: 4, name: "Location", type: "text" },
 								]}
 								isActive={open === 1 && formOpen === true}
-								onChange={handleSubmit}
+								onChange={saveEdit}
 								onClick={() => setFormOpen(false)}
 							/>
 						</>
@@ -139,8 +182,8 @@ function App() {
 									{ id: 0, name: "Company Name", type: "text" },
 									{ id: 1, name: "Position", type: "text" },
 									{ id: 2, name: "Description", type: "textarea" },
-									{ id: 3, name: "Start Date", type: "date" },
-									{ id: 4, name: "End Date", type: "date" },
+									{ id: 3, name: "Start Date", type: "text" },
+									{ id: 4, name: "End Date", type: "text" },
 								]}
 								isActive={open === 2 && formOpen === true}
 								onChange={handleSubmit}

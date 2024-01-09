@@ -3,6 +3,7 @@ export default function ListRenderer({
 	isActive,
 	dataArray,
 	onDelete,
+	onEdit,
 }) {
 	return (
 		<ul className={isActive ? "shown" : "hidden"}>
@@ -10,7 +11,10 @@ export default function ListRenderer({
 				return (
 					<li id={item.id} key={item.id}>
 						<p>{item.name}</p>
-						<ion-icon name="create-outline"></ion-icon>
+						<ion-icon
+							onClick={() => onEdit(item.id)}
+							name="create-outline"
+						></ion-icon>
 						<ion-icon
 							onClick={() => onDelete(item.id)}
 							name="trash-outline"
