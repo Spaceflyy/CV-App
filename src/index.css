@@ -58,6 +58,10 @@ textarea {
 	display: none;
 }
 
+.displayShown {
+	display: inline-block;
+}
+
 .shown {
 	animation: slideIn 0.3s;
 }

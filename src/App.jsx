@@ -87,8 +87,42 @@ function App() {
 	const handleDeleteExperience = (id) => {
 		setExpList(expList.filter((item) => item.id !== id));
 	};
+	const saveEditExp = (e) => {
+		e.preventDefault();
+		let companyName = document.querySelector("#expForm #CompanyName").value;
+		let position = document.querySelector("#expForm #Position").value;
+		let description = document.querySelector("#expForm #Description").value;
+		let startDate = document.querySelector("#expForm #StartDate").value;
+		let endDate = document.querySelector("#expForm #EndDate").value;
 
-	const saveEdit = (e) => {
+		let submitBtn = document.querySelector("#expForm #submitBtn");
+		let editBtn = document.querySelector("#expForm #editBtn");
+
+		submitBtn.classList.remove("hidden");
+		submitBtn.classList.add("displayShown");
+		editBtn.classList.remove("displayShown");
+		editBtn.classList.add("hidden");
+		let id = Number(submitBtn.getAttribute("data"));
+
+		setExpList(
+			expList.map((item) => {
+				if (item.id === id) {
+					return {
+						...item,
+						name: companyName,
+						pos: position,
+						desc: description,
+						start: startDate,
+						end: endDate,
+					};
+				} else return item;
+			})
+		);
+
+		setFormOpen(false);
+	};
+
+	const saveEditEdu = (e) => {
 		e.preventDefault();
 		let schoolName = document.querySelector("#educationForm #SchoolName").value;
 		let subject = document.querySelector("#educationForm #Subject").value;
@@ -96,7 +130,11 @@ function App() {
 		let end = document.querySelector("#educationForm #EndDate").value;
 		let loc = document.querySelector("#educationForm #Location").value;
 		let submitBtn = document.getElementById("submitBtn");
-
+		let editBtn = document.getElementById("editBtn");
+		submitBtn.classList.remove("hidden");
+		submitBtn.classList.add("displayShown");
+		editBtn.classList.remove("displayShown");
+		editBtn.classList.add("hidden");
 		let id = Number(submitBtn.getAttribute("data"));
 		console.log(id);
 		setEduList(
@@ -117,7 +155,7 @@ function App() {
 		setFormOpen(false);
 	};
 
-	const handleEdit = (id) => {
+	const handleEditEducation = (id) => {
 		let item = eduList.filter((item) => item.id === id);
 		let schoolName = document.querySelector("#educationForm #SchoolName");
 		let subject = document.querySelector("#educationForm #Subject");
@@ -125,13 +163,54 @@ function App() {
 		let end = document.querySelector("#educationForm #EndDate");
 		let loc = document.querySelector("#educationForm #Location");
 		let submitBtn = document.getElementById("submitBtn");
-		submitBtn.setAttribute("data", id);
+		let editBtn = document.getElementById("editBtn");
+		editBtn.setAttribute("data", id);
+		submitBtn.classList.add("hidden");
+		submitBtn.classList.remove("displayShown");
+		editBtn.classList.add("displayShown");
+		editBtn.classList.remove("hidden");
+
 		schoolName.value = item[0].name;
 		subject.value = item[0].subject;
 		start.value = item[0].start;
 		end.value = item[0].end;
 		loc.value = item[0].location;
 		setFormOpen(true);
+	};
+
+	const handleEditExp = (id) => {
+		let item = expList.filter((item) => item.id === id);
+
+		let companyName = document.querySelector("#expForm #CompanyName");
+		let position = document.querySelector("#expForm #Position");
+		let description = document.querySelector("#expForm #Description");
+		let startDate = document.querySelector("#expForm #StartDate");
+		let endDate = document.querySelector("#expForm #EndDate");
+
+		let submitBtn = document.querySelector("#expForm #submitBtn");
+		let editBtn = document.querySelector("#expForm #editBtn");
+		editBtn.setAttribute("data", id);
+		submitBtn.classList.add("hidden");
+		submitBtn.classList.remove("displayShown");
+		editBtn.classList.add("displayShown");
+		editBtn.classList.remove("hidden");
+
+		companyName.value = item[0].name;
+		position.value = item[0].pos;
+		description.value = item[0].desc;
+		startDate.value = item[0].start;
+		endDate.value = item[0].end;
+		setFormOpen(true);
+	};
+	const handleCancel = (e) => {
+		console.log(e.target);
+		let submitBtn = document.getElementById("submitBtn");
+		let editBtn = document.getElementById("editBtn");
+		submitBtn.classList.remove("hidden");
+		submitBtn.classList.add("displayShown");
+		editBtn.classList.remove("displayShown");
+		editBtn.classList.add("hidden");
+		setFormOpen(false);
 	};
 
 	return (
@@ -150,7 +229,7 @@ function App() {
 								isActive={open === 1 && formOpen === false}
 								dataArray={eduList}
 								onDelete={handleDeleteEducation}
-								onEdit={handleEdit}
+								onEdit={handleEditEducation}
 							/>
 							<InputForm
 								formId={"educationForm"}
@@ -162,8 +241,9 @@ function App() {
 									{ id: 4, name: "Location", type: "text" },
 								]}
 								isActive={open === 1 && formOpen === true}
-								onChange={saveEdit}
-								onClick={() => setFormOpen(false)}
+								onChange={handleSubmit}
+								onClick={handleCancel}
+								saveEdit={saveEditEdu}
 							/>
 						</>
 					}
@@ -180,6 +260,7 @@ function App() {
 								isActive={open === 2 && formOpen === false}
 								dataArray={expList}
 								onDelete={handleDeleteExperience}
+								onEdit={handleEditExp}
 							/>
 							<InputForm
 								formId={"expForm"}
@@ -192,7 +273,8 @@ function App() {
 								]}
 								isActive={open === 2 && formOpen === true}
 								onChange={handleSubmit}
-								onClick={() => setFormOpen(false)}
+								onClick={handleCancel}
+								saveEdit={saveEditExp}
 							/>
 						</>
 					}
