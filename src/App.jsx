@@ -64,6 +64,7 @@ function App() {
 			let desc = document.querySelector("#expForm #Description").value;
 			let start = document.querySelector("#expForm #StartDate").value;
 			let end = document.querySelector("#expForm #EndDate").value;
+			let loc = document.querySelector("#expForm #Location").value;
 
 			let newExperience = {
 				id: id,
@@ -72,6 +73,7 @@ function App() {
 				desc: desc,
 				start: start,
 				end: end,
+				location: loc,
 			};
 
 			setExpList([...expList, newExperience]);
@@ -94,7 +96,7 @@ function App() {
 		let description = document.querySelector("#expForm #Description").value;
 		let startDate = document.querySelector("#expForm #StartDate").value;
 		let endDate = document.querySelector("#expForm #EndDate").value;
-
+		let loc = document.querySelector("#expForm #Location").value;
 		let submitBtn = document.querySelector("#expForm #submitBtn");
 		let editBtn = document.querySelector("#expForm #editBtn");
 
@@ -114,6 +116,7 @@ function App() {
 						desc: description,
 						start: startDate,
 						end: endDate,
+						location: loc,
 					};
 				} else return item;
 			})
@@ -186,6 +189,7 @@ function App() {
 		let description = document.querySelector("#expForm #Description");
 		let startDate = document.querySelector("#expForm #StartDate");
 		let endDate = document.querySelector("#expForm #EndDate");
+		let loc = document.querySelector("#expForm #Location");
 
 		let submitBtn = document.querySelector("#expForm #submitBtn");
 		let editBtn = document.querySelector("#expForm #editBtn");
@@ -200,6 +204,7 @@ function App() {
 		description.value = item[0].desc;
 		startDate.value = item[0].start;
 		endDate.value = item[0].end;
+		loc.value = item[0].location;
 		setFormOpen(true);
 	};
 	const handleCancel = (e) => {
@@ -270,6 +275,7 @@ function App() {
 									{ id: 2, name: "Description", type: "textarea" },
 									{ id: 3, name: "Start Date", type: "text" },
 									{ id: 4, name: "End Date", type: "text" },
+									{ id: 5, name: "Location", type: "text" },
 								]}
 								isActive={open === 2 && formOpen === true}
 								onChange={handleSubmit}
@@ -280,36 +286,59 @@ function App() {
 					}
 				/>
 			</div>
-
 			<div className="cvContainer">
-				<h1>{text.fName}</h1>
-				<p>{text.mail}</p>
-				<p>{text.telephone}</p>
-				<p>{text.location}</p>
-
-				{eduList.map((list) => {
-					return (
-						<div key={list.id}>
-							<h1>{list.name}</h1>
-							<p>{list.subject}</p>
-							<p>{list.start}</p>
-							<p>{list.end}</p>
-							<p>{list.location}</p>
-						</div>
-					);
-				})}
-
-				{expList.map((list) => {
-					return (
-						<div key={list.id}>
-							<h1>{list.name}</h1>
-							<p>{list.pos}</p>
-							<p>{list.desc}</p>
-							<p>{list.start}</p>
-							<p>{list.end}</p>
-						</div>
-					);
-				})}
+				<div className="personalInfo">
+					<h1>{text.fName}</h1>
+					<div className="contactInfo">
+						<ion-icon name="mail"></ion-icon>
+						<p>{text.mail}</p>
+						<ion-icon name="call"></ion-icon>
+						<p>{text.telephone}</p>
+						<ion-icon name="location"></ion-icon>
+						<p>{text.location}</p>
+					</div>
+				</div>
+				<div className="generalInfo">
+					<h3 className={eduList.length > 0 ? "sectionTitle" : "hidden"}>
+						Education
+					</h3>
+					{eduList.map((list) => {
+						return (
+							<div className="listElement" key={list.id}>
+								<div className="dateLoc">
+									<p>
+										{list.start} - {list.end}
+									</p>
+									<p>{list.location}</p>
+								</div>
+								<div className="nameSub">
+									<p className="elementName">{list.name}</p>
+									<p>{list.subject}</p>
+								</div>
+							</div>
+						);
+					})}
+					<h3 className={expList.length > 0 ? "sectionTitle" : "hidden"}>
+						Work Experience
+					</h3>
+					{expList.map((list) => {
+						return (
+							<div className="listElement" key={list.id}>
+								<div className="dateLoc">
+									<p>
+										{list.start} - {list.end}
+									</p>
+									<p> {list.location}</p>
+								</div>
+								<div className="nameSub">
+									<p className="elementName">{list.name}</p>
+									<p>{list.pos}</p>
+									<p>{list.desc}</p>
+								</div>
+							</div>
+						);
+					})}
+				</div>
 			</div>
 		</>
 	);
