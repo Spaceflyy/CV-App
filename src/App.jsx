@@ -9,23 +9,42 @@ function App() {
 	const [eduList, setEduList] = useState([
 		{
 			id: 0,
-			name: "Test",
-			subject: "Maths",
-			start: "13/10/20",
+			name: "Oxford University",
+			subject: "Physics",
+			start: "13/09/20",
 			end: "23/09/23",
-			location: "Bournemouth",
+			location: "Oxford, UK",
+		},
+	]);
+	const [text, setText] = useState({
+		id: 0,
+		fName: "Alec Selwyn",
+		mail: "alecselwyn@example.com",
+		telephone: "+447906874351",
+		location: "London, UK",
+	});
+	const [expList, setExpList] = useState([
+		{
+			id: 0,
+			name: "Web Development Co.",
+			pos: "UX & UI Designer",
+			desc:
+				"Prototyped and designed many different user interfaces for various clients across many different industries, ranging from culinary companies to banks. ",
+			start: "10/11/23",
+			end: "Present",
+			location: "London, UK",
 		},
 		{
 			id: 1,
-			name: "sdfsdf",
-			subject: "asdfasdf",
-			start: "13/10/20",
-			end: "23/09/23",
-			location: "sdfas",
+			name: "Web Development Co.",
+			pos: "UX & UI Designer",
+			desc:
+				"Prototyped and designed many different user interfaces for various clients across many different industries, ranging from culinary companies to banks. ",
+			start: "10/11/23",
+			end: "Present",
+			location: "London, UK",
 		},
 	]);
-	const [text, setText] = useState({});
-	const [expList, setExpList] = useState([]);
 	const [formOpen, setFormOpen] = useState(false);
 
 	const handleChange = (e) => {
@@ -218,9 +237,72 @@ function App() {
 		setFormOpen(false);
 	};
 
+	const handleLoadExample = () => {
+		setExpList([
+			{
+				id: 0,
+				name: "Web Development Co.",
+				pos: "UX & UI Designer",
+				desc:
+					"Prototyped and designed many different user interfaces for various clients across many different industries, ranging from culinary companies to banks. ",
+				start: "10/11/23",
+				end: "Present",
+				location: "London, UK",
+			},
+			{
+				id: 1,
+				name: "Web Development Co.",
+				pos: "UX & UI Designer",
+				desc:
+					"Prototyped and designed many different user interfaces for various clients across many different industries, ranging from culinary companies to banks. ",
+				start: "10/11/23",
+				end: "Present",
+				location: "London, UK",
+			},
+		]);
+		setText({
+			id: 0,
+			fName: "Alec Selwyn",
+			mail: "alecselwyn@example.com",
+			telephone: "+447906874351",
+			location: "London, UK",
+		});
+
+		setEduList([
+			{
+				id: 0,
+				name: "Oxford University",
+				subject: "Physics",
+				start: "13/09/20",
+				end: "23/09/23",
+				location: "Oxford, UK",
+			},
+		]);
+	};
+
+	const handleCVClear = () => {
+		setText({});
+		setEduList([]);
+		setExpList([]);
+	};
+
 	return (
 		<>
 			<div className="infoContainer">
+				<div className="inputSection">
+					<div className="btnContainer">
+						<button onClick={window.print}>
+							<ion-icon name="print-outline"></ion-icon> Print CV
+						</button>
+						<button onClick={handleLoadExample}>
+							<ion-icon name="download-outline"></ion-icon> Load Example
+						</button>
+
+						<button onClick={handleCVClear}>
+							<ion-icon name="trash-outline"></ion-icon> Clear CV
+						</button>
+					</div>
+				</div>
 				<PersonalInfo value={text} onChange={handleChange} />
 
 				<InputSection

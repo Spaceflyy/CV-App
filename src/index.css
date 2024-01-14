@@ -84,7 +84,11 @@ body {
 	font-weight: bold;
 }
 
-@media (max-width: 800px) {
+.dateLoc {
+	min-width: max-content;
+}
+
+@media screen and (max-width: 800px) {
 	#root {
 		flex-direction: column;
 		align-items: center;
@@ -104,8 +108,33 @@ body {
 	}
 }
 
-@media (max-width: 500px) {
+@media screen and (max-width: 500px) {
 	.infoContainer {
 		max-width: 300px;
+	}
+}
+
+@media print {
+	@page {
+		print-color-adjust: exact;
+		size: A4;
+		margin: 0;
+	}
+
+	.infoContainer {
+		display: none;
+	}
+
+	.cvContainer,
+	html,
+	body {
+		height: 29.7cm;
+		width: 21cm;
+	}
+
+	#root {
+		padding: 0;
+		margin: 0;
+		width: 100%;
 	}
 }

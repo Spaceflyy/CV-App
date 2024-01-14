@@ -24,9 +24,11 @@ export default function ListRenderer({
 					</li>
 				);
 			})}
-			<button onClick={onClick}>
-				<ion-icon name="add-circle-outline"></ion-icon>Add
-			</button>
+			<div className="btnContainer">
+				<button onClick={onClick}>
+					<ion-icon name="add-circle-outline"></ion-icon>Add
+				</button>
+			</div>
 		</ul>
 	);
 }

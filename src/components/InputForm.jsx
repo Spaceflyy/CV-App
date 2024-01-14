@@ -30,16 +30,18 @@ export default function InputForm({
 					</label>
 				);
 			})}
-			<input onClick={onClick} type="reset" value="Cancel" />
-			<input type="reset" value="Clear" />
-			<input form={formId} id="submitBtn" type="submit" value="Save" />
-			<input
-				className="hidden"
-				onClick={saveEdit}
-				id="editBtn"
-				type="button"
-				value="Save Edit"
-			/>
+			<div className="btnContainer">
+				<input onClick={onClick} type="reset" value="Cancel" />
+				<input type="reset" value="Clear" />
+				<input form={formId} id="submitBtn" type="submit" value="Save" />
+				<input
+					className="hidden"
+					onClick={saveEdit}
+					id="editBtn"
+					type="button"
+					value="Save Edit"
+				/>
+			</div>
 		</form>
 	);
 }
