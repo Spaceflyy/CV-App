@@ -114,13 +114,15 @@ body {
 	}
 }
 
-@media print {
+@media print and (color) {
 	@page {
-		print-color-adjust: exact;
 		size: A4;
 		margin: 0;
 	}
-
+	.personalInfo,
+	.sectionTitle {
+		-webkit-print-color-adjust: exact !important;
+	}
 	.infoContainer {
 		display: none;
 	}
