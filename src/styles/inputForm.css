@@ -1,0 +1,47 @@
+label {
+	min-width: 97%;
+}
+
+input,
+textarea {
+	min-width: 97%;
+	border-radius: 5px;
+	padding: 5px;
+	border: none;
+	background-color: var(--lightGrey);
+}
+
+/* .displayShown {
+	display: inline-block;
+} */
+
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+button {
+	margin-top: 1rem;
+	min-width: 100px;
+}
+
+form {
+	padding: 0px 1rem 1rem 1rem;
+}
+
+.hidden {
+	display: none;
+}
+
+.shown {
+	animation: slideIn 0.3s;
+}
+@keyframes slideIn {
+	from {
+		transform: translateY(-10%);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateY(0%);
+		opacity: 100%;
+	}
+}

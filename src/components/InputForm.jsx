@@ -1,3 +1,5 @@
+import "../styles/inputForm.css";
+
 export default function InputForm({
 	onClick,
 	formId,

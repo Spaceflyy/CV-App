@@ -39,114 +39,6 @@ body {
 	background-color: var(--offWhite);
 	filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.25));
 }
-/* START OF INPUT FORM CSS */
-.inputSection {
-	background-color: var(--offWhite);
-	border-radius: 5px;
-	padding: 0.5rem;
-	filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.25));
-}
-label {
-	min-width: 97%;
-}
-
-input,
-textarea {
-	min-width: 97%;
-	border-radius: 5px;
-	padding: 5px;
-	border: none;
-	background-color: var(--lightGrey);
-}
-
-.chevron {
-	border-style: solid;
-	border-width: 0.15em 0.15em 0 0;
-	position: relative;
-	transform: rotate(-45deg);
-	width: 0.5em;
-	height: 0.5em;
-	top: 0.5em;
-	left: 0.5em;
-	transition: 0.4s;
-	font-size: 20px;
-}
-
-.hidden {
-	display: none;
-}
-
-.shown {
-	animation: slideIn 0.3s;
-}
-
-/* .displayShown {
-	display: inline-block;
-} */
-
-.after {
-	transition: 0.4s;
-	transform: rotate(135deg);
-}
-
-.inputSection h2 {
-	display: grid;
-	grid-template-columns: 10fr 1fr;
-	cursor: pointer;
-	padding: 0px 1rem 0px 1rem;
-}
-
-input[type="submit"],
-input[type="button"],
-input[type="reset"],
-button {
-	margin-top: 1rem;
-	min-width: 100px;
-}
-
-form {
-	padding: 0px 1rem 1rem 1rem;
-}
-
-ul {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	margin: 0;
-	padding: 0;
-}
-li {
-	background-color: rgb(226, 226, 226);
-	margin: 0;
-	display: flex;
-	align-items: center;
-	list-style-type: none;
-	border-radius: 5px;
-	padding: 10px;
-}
-
-li p {
-	flex-grow: 1;
-	margin: 0;
-}
-
-ion-icon {
-	cursor: pointer;
-	font-size: 24px;
-}
-
-@keyframes slideIn {
-	from {
-		transform: translateY(-10%);
-		opacity: 0;
-	}
-
-	to {
-		transform: translateY(0%);
-		opacity: 100%;
-	}
-}
-/* END OF INPUT FORM CSS */
 
 .contactInfo {
 	display: flex;
@@ -202,8 +94,13 @@ ion-icon {
 	}
 
 	.cvContainer {
-		height: 29.7cm;
+		height: max-content;
 		max-width: 100%;
+		min-width: 330px;
+	}
+
+	.contactInfo {
+		flex-direction: column;
 	}
 }
 

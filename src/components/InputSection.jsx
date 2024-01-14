@@ -1,3 +1,5 @@
+import "../styles/inputSection.css";
+
 export default function InputSection({ title, isActive, onOpen, children }) {
 	return (
 		<div className="inputSection">
